@@ -1,0 +1,23 @@
+Task 1: Play prediction 
+
+Used the entire dataset to train.
+Calculate the gamePopRank from mostpopular games. Whether a game is in gamePopRank will be considered in the final prediction.
+Use BPR model to train the data. In 300 loops, the objective is reduced to around 0.43.
+
+Prediction: (observation: bpr performs on seen data)
+Calculate the bpr rank fro each items. in played_pairs.
+    Step 1: check if both user and item in this pair seen in train data
+    if so, use bpr model to predict the pair's ranking.
+    Step 2:
+    if it is not seen in previous data. If the game is found in most popular games, assign its rank as high as 999. if not assign the rank as low as -999.
+  
+  For all ranks, sort them. Since the test set has half labels 0 and half labels 1, I incorporate this by assigning equal numbers of 0 and 1s to each user's user-item pairs. For the first half of the pairs in the ranks that have the high ranks, assign label 1. For the second half that have the low ranks, assign label 0.
+  
+ 
+
+Task 2:Time played 
+
+Most of the work is done by function iterate. It takes in a parameter lambda, and returns 
+betaU, betaI, alpha. The formula used is what it is used in hw3. Updates betaU, betaI, alpha for 400 times.
+The betaU, betaI, alpha used for prediction is the output given by iterate(5) (when lambda = 5).
+Make predictions by using model6_predict on pairs_Hours.
